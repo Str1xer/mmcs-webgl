@@ -32,6 +32,7 @@ export async function initImGUI(canvas) {
 
         ImGui.SliderFloat("Linear Attenuation", (_ = linearAttenuation) => linearAttenuation = _, 0.0, 10.0);
         ImGui.SliderFloat("Quadratic Attenuation", (_ = quadraticAttenuation) => quadraticAttenuation = _, 0.0, 10.0);
+        ImGui.SliderFloat("Light Intensivity", (_ = intensivity) => intensivity = _, 0.0, 10.0);
         ImGui.End();
 
         ImGui.EndFrame();

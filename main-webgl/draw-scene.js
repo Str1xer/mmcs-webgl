@@ -41,6 +41,9 @@ function drawScene(gl, programInfo) {
   gl.uniform1f(
     programInfo.uniformLocations.quadraticAttenuation, quadraticAttenuation
   );
+  gl.uniform1f(
+    programInfo.uniformLocations.intensivity, intensivity
+  );
 
   drawMesh(gl, programInfo, cube, projectionMatrix, [0, 0, -10], [0, rotation, 0], [0, 0, 0], [1, 1, 1, 1])
 }
