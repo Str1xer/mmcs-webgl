@@ -24,7 +24,7 @@ export async function initImGUI(canvas) {
             lightingMode *= -1;
         }
 
-        ImGui.SliderFloat("Name Float", (_ = rotation) => rotation = _, 0.0, Math.PI * 2);
+        ImGui.SliderFloat("Cube rotation", (_ = rotation) => rotation = _, 0.0, Math.PI * 2);
 
         ImGui.ColorEdit3("Ambient Light Color", ambientLightColor);
         ImGui.ColorEdit3("Diffusion Light Color", diffusionLightColor);
