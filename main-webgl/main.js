@@ -4,10 +4,10 @@ import { initImGUI } from "../imgui.js";
 let deltaTime = 0;
 
 async function loadShaders() {
-  const vertexResponse = await fetch("/mmcs-webgl/shaders/shader.vs.glsl");
+  const vertexResponse = await fetch("/shaders/shader.vs.glsl");
   const vertexShaderText = await vertexResponse.text();
 
-  const fragmentResponse = await fetch("/mmcs-webgl/shaders/shader.fs.glsl");
+  const fragmentResponse = await fetch("/shaders/shader.fs.glsl");
   const fragmentShaderText = await fragmentResponse.text();
 
   return { vertexShader: vertexShaderText, fragmentShader: fragmentShaderText }
