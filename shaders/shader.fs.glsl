@@ -7,6 +7,8 @@ uniform highp vec3 uSpecularLightColor;
 
 uniform float uShadingMode;
 uniform highp float uLightingMode;
+uniform highp float uLinearAttenuation;
+uniform highp float uQuadraticAttenuation;
 
 varying vec3 vNormal;
 varying vec3 vFragPos;
@@ -15,21 +17,29 @@ varying vec3 vLightColor;
 const float shininess = 16.0;
 
 vec3 light(vec3 lightDir, vec3 normal) {
+
+    float distance = length(lightDir);
+    float attenuation = 1.0 / (1.0 + uLinearAttenuation * distance + uQuadraticAttenuation * distance * distance);
+
     float diff = max(dot(normal, lightDir), 0.0);
-    vec3 diffuse = uDiffuseLightColor * diff;
+
+    vec3 diffuse = uDiffuseLightColor * diff * attenuation;
 
     vec3 viewDir = -normalize(vFragPos);
     vec3 reflectDir = reflect(-lightDir, normal);
 
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);
-    vec3 specular = uSpecularLightColor * spec;
+    vec3 specular = uSpecularLightColor * spec * attenuation;
 
     return (uAmbientLightColor + diffuse + specular);
 }
 
 vec3 lambertLight(vec3 lightDir, vec3 normal) {
+    float distance = length(lightDir);
+    float attenuation = 1.0 / (1.0 + uLinearAttenuation * distance + uQuadraticAttenuation * distance * distance);
+
     float diff = max(dot(normal, lightDir), 0.0);
-    return uAmbientLightColor + uDiffuseLightColor * diff;
+    return uAmbientLightColor + uDiffuseLightColor * diff * attenuation;
 }
 
 void main(void) {

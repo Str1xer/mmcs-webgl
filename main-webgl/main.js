@@ -55,6 +55,8 @@ function main(canvas, vsSource, fsSource) {
 
       shadingMode: gl.getUniformLocation(shaderProgram, "uShadingMode"),
       lightingMode: gl.getUniformLocation(shaderProgram, "uLightingMode"),
+      linearAttenuation: gl.getUniformLocation(shaderProgram, "uLinearAttenuation"),
+      quadraticAttenuation: gl.getUniformLocation(shaderProgram, "uQuadraticAttenuation"),
     },
   };
 
