@@ -1,6 +1,7 @@
 attribute vec4 aVertexPosition;
 attribute vec3 aVertexNormal;
-// attribute vec3 aVertexColor;
+attribute vec2 aTextureCoord;
+attribute vec3 aVertexColor;
 
 uniform mat4 uModelViewMatrix;
 uniform mat4 uProjectionMatrix;
@@ -14,15 +15,19 @@ uniform float uLinearAttenuation;
 uniform float uQuadraticAttenuation;
 uniform float uIntensivity;
 
+uniform mat4 uNormalMatrix;
+
 varying vec3 vNormal;
 varying vec3 vFragPos;
 varying vec3 vLightColor;
+varying vec3 vFragColor;
+varying highp vec2 vTextureCoord;
 
 const float shininess = 16.0;
 
 vec3 light(vec3 lightDir, vec3 normal) {
     float distance = length(lightDir);
-    float attenuation = 1.0 / (1.0 + uLinearAttenuation * distance + uQuadraticAttenuation  * distance * distance);
+    float attenuation = 1.0 / (1.0 + uLinearAttenuation * distance + uQuadraticAttenuation * distance * distance);
 
     float diff = max(dot(normal, lightDir), 0.0);
     vec3 diffuse = uDiffuseLightColor * diff * attenuation * uIntensivity;
@@ -38,7 +43,7 @@ vec3 light(vec3 lightDir, vec3 normal) {
 
 vec3 lambertLight(vec3 lightDir, vec3 normal) {
     float distance = length(lightDir);
-    float attenuation = 1.0 / (1.0 + uLinearAttenuation * distance + uQuadraticAttenuation  * distance * distance);
+    float attenuation = 1.0 / (1.0 + uLinearAttenuation * distance + uQuadraticAttenuation * distance * distance);
 
     float diff = max(dot(normal, lightDir), 0.0);
     return uAmbientLightColor + uDiffuseLightColor * diff * attenuation * uIntensivity;
@@ -55,6 +60,10 @@ void main(void) {
         vLightColor = light(lightDir, vNormal);
     else
         vLightColor = lambertLight(lightDir, vNormal);
+
+    vTextureCoord = aTextureCoord;
+
+    vFragColor = aVertexColor;
 
     gl_Position = uProjectionMatrix * vec4(vFragPos, 1.0);
 }

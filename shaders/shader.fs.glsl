@@ -10,10 +10,19 @@ uniform highp float uLightingMode;
 uniform highp float uLinearAttenuation;
 uniform highp float uQuadraticAttenuation;
 uniform highp float uIntensivity;
+uniform float uColorWeight;
+uniform float uDigitWeight;
+uniform float uMaterialWeight;
+
+uniform sampler2D uSampler;
+uniform sampler2D uSampler2;
 
 varying vec3 vNormal;
 varying vec3 vFragPos;
 varying vec3 vLightColor;
+varying vec3 vFragColor;
+
+varying highp vec2 vTextureCoord;
 
 const float shininess = 16.0;
 
@@ -56,9 +65,12 @@ void main(void) {
     else
         vLightWeighting = lambertLight(lightDir, norm);
 
+    vec4 textureColor = texture2D(uSampler, vTextureCoord) * uDigitWeight + texture2D(uSampler2, vTextureCoord) * uMaterialWeight + vec4(vFragColor, 1) * uColorWeight;
+
     if(uShadingMode < 0.0) {
-        gl_FragColor = vec4(vec3(1, 1, 1) * vLightWeighting, 1.0);
+        gl_FragColor = vec4(textureColor.rgb * vLightWeighting, 1);
     } else {
-        gl_FragColor = vec4(vec3(1, 1, 1) * vLightColor, 1.0);
+        gl_FragColor = vec4(textureColor.rgb * vLightColor, 1);
     }
+
 }

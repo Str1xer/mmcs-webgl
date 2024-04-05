@@ -30,9 +30,14 @@ export async function initImGUI(canvas) {
         ImGui.ColorEdit3("Diffusion Light Color", diffusionLightColor);
         ImGui.ColorEdit3("Specular Light Color", specularLightColor);
 
-        ImGui.SliderFloat("Linear Attenuation", (_ = linearAttenuation) => linearAttenuation = _, 0.0, 10.0);
-        ImGui.SliderFloat("Quadratic Attenuation", (_ = quadraticAttenuation) => quadraticAttenuation = _, 0.0, 10.0);
-        ImGui.SliderFloat("Light Intensivity", (_ = intensivity) => intensivity = _, 0.0, 10.0);
+        ImGui.InputFloat("Linear Attenuation", (_ = linearAttenuation) => linearAttenuation = _, 0.0, 10.0);
+        ImGui.InputFloat("Quadratic Attenuation", (_ = quadraticAttenuation) => quadraticAttenuation = _, 0.0, 10.0);
+        ImGui.InputFloat("Light Intensivity", (_ = intensivity) => intensivity = _, 0.0, 10.0);
+
+        ImGui.InputFloat("Color Weight", (_ = colorWeight) => colorWeight = _, 0.0, 10.0);
+        ImGui.InputFloat("Digit Weight", (_ = digitWeight) => digitWeight = _, 0.0, 10.0);
+        ImGui.InputFloat("Material Weight", (_ = materialWeight) => materialWeight = _, 0.0, 10.0);
+        
         ImGui.End();
 
         ImGui.EndFrame();

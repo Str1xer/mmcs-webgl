@@ -4,10 +4,10 @@ import { initImGUI } from "../imgui.js";
 let deltaTime = 0;
 
 async function loadShaders() {
-  const vertexResponse = await fetch("/mmcs-webgl/shaders/shader.vs.glsl");
+  const vertexResponse = await fetch(debug ? "/shaders/shader.vs.glsl" : "/mmcs-webgl/shaders/shader.vs.glsl");
   const vertexShaderText = await vertexResponse.text();
 
-  const fragmentResponse = await fetch("/mmcs-webgl/shaders/shader.fs.glsl");
+  const fragmentResponse = await fetch(debug ? "/shaders/shader.fs.glsl" : "/mmcs-webgl/shaders/shader.fs.glsl");
   const fragmentShaderText = await fragmentResponse.text();
 
   return { vertexShader: vertexShaderText, fragmentShader: fragmentShaderText }
@@ -18,6 +18,7 @@ loadShaders().then(response => {
   var canvas = document.querySelector("#glcanvas1");
   main(canvas, response.vertexShader, response.fragmentShader);
   initImGUI(canvas);
+
 })
 
 function main(canvas, vsSource, fsSource) {
@@ -42,11 +43,15 @@ function main(canvas, vsSource, fsSource) {
     attribLocations: {
       vertexPosition: gl.getAttribLocation(shaderProgram, "aVertexPosition"),
       vertexNormal: gl.getAttribLocation(shaderProgram, "aVertexNormal"),
-      // vertexColor: gl.getAttribLocation(shaderProgram, "aVertexColor"),
+      vertexColor: gl.getAttribLocation(shaderProgram, "aVertexColor"),
+      textureCoord: gl.getAttribLocation(shaderProgram, "aTextureCoord"),
     },
     uniformLocations: {
       projectionMatrix: gl.getUniformLocation(shaderProgram, "uProjectionMatrix"),
       modelViewMatrix: gl.getUniformLocation(shaderProgram, "uModelViewMatrix"),
+      uSampler: gl.getUniformLocation(shaderProgram, "uSampler"),
+      uSampler2: gl.getUniformLocation(shaderProgram, "uSampler2"),
+      normalMatrix: gl.getUniformLocation(shaderProgram, "uNormalMatrix"),
 
       lightPosition: gl.getUniformLocation(shaderProgram, "uLightPosition"),
       ambientLightColor: gl.getUniformLocation(shaderProgram, "uAmbientLightColor"),
@@ -58,8 +63,21 @@ function main(canvas, vsSource, fsSource) {
       linearAttenuation: gl.getUniformLocation(shaderProgram, "uLinearAttenuation"),
       quadraticAttenuation: gl.getUniformLocation(shaderProgram, "uQuadraticAttenuation"),
       intensivity: gl.getUniformLocation(shaderProgram, "uIntensivity"),
+
+      colorWeight: gl.getUniformLocation(shaderProgram, "uColorWeight"),
+      digitWeight: gl.getUniformLocation(shaderProgram, "uDigitWeight"),
+      materialWeight: gl.getUniformLocation(shaderProgram, "uMaterialWeight"),
     },
   };
+
+  // const textures = {
+  //   digit1: loadTexture(gl, "tex1"),
+  //   digit2: loadTexture(gl, "tex2"),
+  //   digit3: loadTexture(gl, "tex3"),
+  //   dirt: loadTexture(gl, "dirt"),
+  //   gold: loadTexture(gl, "gold"),
+  //   wood: loadTexture(gl, "wood")
+  // }
 
   let then = 0;
 
