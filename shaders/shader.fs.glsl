@@ -5,8 +5,6 @@ uniform highp vec3 uAmbientLightColor;
 uniform highp vec3 uDiffuseLightColor;
 uniform highp vec3 uSpecularLightColor;
 
-uniform float uShadingMode;
-uniform highp float uLightingMode;
 uniform highp float uLinearAttenuation;
 uniform highp float uQuadraticAttenuation;
 uniform highp float uIntensivity;
@@ -15,12 +13,15 @@ uniform float uDigitWeight;
 uniform float uMaterialWeight;
 
 uniform sampler2D uSampler;
-uniform sampler2D uSampler2;
+uniform sampler2D uNormalSampler;
 
 varying vec3 vNormal;
+varying vec3 vTangent;
+varying vec3 vBitangent;
+
 varying vec3 vFragPos;
-varying vec3 vLightColor;
-varying vec3 vFragColor;
+// varying vec3 vLightColor;
+// varying vec3 vFragColor;
 
 varying highp vec2 vTextureCoord;
 
@@ -44,33 +45,26 @@ vec3 light(vec3 lightDir, vec3 normal) {
     return (uAmbientLightColor + diffuse + specular);
 }
 
-vec3 lambertLight(vec3 lightDir, vec3 normal) {
-    float distance = length(lightDir);
-    float attenuation = 1.0 / (1.0 + uLinearAttenuation * distance + uQuadraticAttenuation * distance * distance);
-
-    float diff = max(dot(normal, lightDir), 0.0);
-    return uAmbientLightColor + uDiffuseLightColor * diff * attenuation * uIntensivity;
-}
-
 void main(void) {
+    // vec4 textureColor = texture2D(uSampler, vTextureCoord);
+    vec4 textureColor = vec4(1, 0.4, 0, 1);
 
-    vec3 norm = normalize(vNormal);
+    mat3 TBN = mat3(vTangent, vBitangent, vNormal);
+    vec3 normalMapValue = normalize(2.0 * vec3(texture2D(uNormalSampler, vTextureCoord)) - 1.0) / 1.0;
 
+    normalMapValue = normalize(vec3(normalMapValue.xy * 1.0, normalMapValue.z));
+    normalMapValue = normalize(TBN * normalMapValue);
+
+    vec3 norm = normalize(normalMapValue);
+
+    vec3 viewDir = -normalize(vFragPos);
     vec3 lightDir = normalize(uLightPosition - vFragPos);
+    vec3 reflectDir = reflect(-lightDir, norm);
 
-    vec3 vLightWeighting = vec3(1.0, 1.0, 1.0);
+    vec3 vLightWeighting = light(lightDir, norm);// uAmbientLightColor + uIntensivity * attenuation * (diffuse + specular);
 
-    if(uLightingMode < 0.0)
-        vLightWeighting = light(lightDir, norm);
-    else
-        vLightWeighting = lambertLight(lightDir, norm);
+    // vec4 textureColor = vec4(norm, 1);
+    //vec4 textureColor = texture2D(uSampler, vTextureCoord) * uDigitWeight + vec4(1, 1, 1, 1) * uColorWeight;
 
-    vec4 textureColor = texture2D(uSampler, vTextureCoord) * uDigitWeight + texture2D(uSampler2, vTextureCoord) * uMaterialWeight + vec4(vFragColor, 1) * uColorWeight;
-
-    if(uShadingMode < 0.0) {
-        gl_FragColor = vec4(textureColor.rgb * vLightWeighting, 1);
-    } else {
-        gl_FragColor = vec4(textureColor.rgb * vLightColor, 1);
-    }
-
+    gl_FragColor = vec4(textureColor.rgb * vLightWeighting, 1.0);
 }

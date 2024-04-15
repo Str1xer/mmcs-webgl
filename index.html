@@ -13,13 +13,13 @@
         var ambientLightColor = new ImGui.ImVector(0.1, 0.1, 0.1);
         var diffusionLightColor = new ImGui.ImVector(0.7, 0.7, 0.7);
         var specularLightColor = new ImGui.ImVector(1.0, 1.0, 1.0);
-        var shadingMode = 1.0;
-        var lightingMode = 1.0;
         var linearAttenuation = 1.0;
         var quadraticAttenuation = 0.0;
         var intensivity = 1.0;
         // var clear_color = new ImGui.ImVec4(0.45, 0.55, 0.60, 1.00);
-        var rotation = 0;
+        var rotationX = 0;
+        var rotationY = 0;
+        var rotationZ = 0;
 
         var digitWeight = 1.0;
         var materialWeight = 0.0;
@@ -63,7 +63,7 @@
     <img id="tex3" src="/textures/3.jpg" width="0" height="0"></img>
     <img id="dirt" src="/textures/dirt.jpg" width="0" height="0"></img>
     <img id="gold" src="/textures/gold.jpg" width="0" height="0"></img>
-    <img id="wood" src="/textures/wood.png" width="0" height="0"></img>
+    <img id="wood" src="/normals.png" width="0" height="0"></img>
 </body>
 
 </html>

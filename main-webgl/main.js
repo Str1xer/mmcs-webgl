@@ -1,31 +1,30 @@
 import { drawScene } from "./draw-scene.js";
 import { initImGUI } from "../imgui.js";
-
+import { loadShaders } from "./utils/loadShaders.js";
+import { loadModel, parseOBJ } from "./utils/loadModel.js";
+import { loadTexture } from "./utils/loadTextures.js";
 let deltaTime = 0;
 
-async function loadShaders() {
-  const vertexResponse = await fetch(debug ? "/shaders/shader.vs.glsl" : "/mmcs-webgl/shaders/shader.vs.glsl");
-  const vertexShaderText = await vertexResponse.text();
+async function preloads() {
+  var canvas = document.querySelector("#glcanvas1");
 
-  const fragmentResponse = await fetch(debug ? "/shaders/shader.fs.glsl" : "/mmcs-webgl/shaders/shader.fs.glsl");
-  const fragmentShaderText = await fragmentResponse.text();
+  const shaders = await loadShaders();
+  await main(canvas, shaders.vertexShader, shaders.fragmentShader);
 
-  return { vertexShader: vertexShaderText, fragmentShader: fragmentShaderText }
+  initImGUI(canvas);
 }
 
+preloads();
 
-loadShaders().then(response => {
-  var canvas = document.querySelector("#glcanvas1");
-  main(canvas, response.vertexShader, response.fragmentShader);
-  initImGUI(canvas);
-
-})
-
-function main(canvas, vsSource, fsSource) {
+async function main(canvas, vsSource, fsSource) {
   canvas.width = document.body.clientWidth;
   canvas.height = document.body.clientHeight;
 
-  const gl = canvas.getContext("webgl");
+  const gl = canvas.getContext("webgl2");
+
+  gl.getExtension("OES_standard_derivatives")
+
+  canvas.addEventListener("webglcontextlost", (e) => { console.log(e) });
 
   if (gl === null) {
     alert(
@@ -43,23 +42,22 @@ function main(canvas, vsSource, fsSource) {
     attribLocations: {
       vertexPosition: gl.getAttribLocation(shaderProgram, "aVertexPosition"),
       vertexNormal: gl.getAttribLocation(shaderProgram, "aVertexNormal"),
+      vertexTangent: gl.getAttribLocation(shaderProgram, "aVertexTangent"),
+      vertexBitangent: gl.getAttribLocation(shaderProgram, "aVertexBitangent"),
       vertexColor: gl.getAttribLocation(shaderProgram, "aVertexColor"),
       textureCoord: gl.getAttribLocation(shaderProgram, "aTextureCoord"),
     },
     uniformLocations: {
       projectionMatrix: gl.getUniformLocation(shaderProgram, "uProjectionMatrix"),
       modelViewMatrix: gl.getUniformLocation(shaderProgram, "uModelViewMatrix"),
-      uSampler: gl.getUniformLocation(shaderProgram, "uSampler"),
-      uSampler2: gl.getUniformLocation(shaderProgram, "uSampler2"),
-      normalMatrix: gl.getUniformLocation(shaderProgram, "uNormalMatrix"),
+      sampler: gl.getUniformLocation(shaderProgram, "uSampler"),
+      normalSampler: gl.getUniformLocation(shaderProgram, "uNormalSampler"),
 
       lightPosition: gl.getUniformLocation(shaderProgram, "uLightPosition"),
       ambientLightColor: gl.getUniformLocation(shaderProgram, "uAmbientLightColor"),
       diffusionLightColor: gl.getUniformLocation(shaderProgram, "uDiffuseLightColor"),
       specularLightColor: gl.getUniformLocation(shaderProgram, "uSpecularLightColor"),
 
-      shadingMode: gl.getUniformLocation(shaderProgram, "uShadingMode"),
-      lightingMode: gl.getUniformLocation(shaderProgram, "uLightingMode"),
       linearAttenuation: gl.getUniformLocation(shaderProgram, "uLinearAttenuation"),
       quadraticAttenuation: gl.getUniformLocation(shaderProgram, "uQuadraticAttenuation"),
       intensivity: gl.getUniformLocation(shaderProgram, "uIntensivity"),
@@ -70,14 +68,19 @@ function main(canvas, vsSource, fsSource) {
     },
   };
 
-  // const textures = {
-  //   digit1: loadTexture(gl, "tex1"),
-  //   digit2: loadTexture(gl, "tex2"),
-  //   digit3: loadTexture(gl, "tex3"),
-  //   dirt: loadTexture(gl, "dirt"),
-  //   gold: loadTexture(gl, "gold"),
-  //   wood: loadTexture(gl, "wood")
-  // }
+  gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
+  gl.enableVertexAttribArray(programInfo.attribLocations.vertexNormal);
+  gl.enableVertexAttribArray(programInfo.attribLocations.vertexTangent);
+  gl.enableVertexAttribArray(programInfo.attribLocations.vertexBitangent);
+  gl.enableVertexAttribArray(programInfo.attribLocations.vertexColor);
+  gl.enableVertexAttribArray(programInfo.attribLocations.textureCoord);
+
+  const loadedAssets = {}
+  const modelResponse = await loadModel("/assets/smoothed.obj");
+  loadedAssets["/assets/smoothed.obj"] = await parseOBJ(modelResponse);
+  loadedAssets["/normals.png"] = await loadTexture(gl, "/normals.png");
+
+  console.log(loadedAssets);
 
   let then = 0;
 
@@ -87,9 +90,9 @@ function main(canvas, vsSource, fsSource) {
     now *= 0.001;
     deltaTime = now - then;
     then = now;
-    timeFromStart += velocity * deltaTime;
+    // rotation += velocity * deltaTime;
 
-    drawScene(gl, programInfo, timeFromStart);
+    drawScene(gl, programInfo, loadedAssets);
 
     requestAnimationFrame(render);
   }
