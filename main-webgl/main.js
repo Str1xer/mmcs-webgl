@@ -76,7 +76,7 @@ async function main(canvas, vsSource, fsSource) {
   gl.enableVertexAttribArray(programInfo.attribLocations.textureCoord);
 
   const loadedAssets = {}
-  const modelResponse = await loadModel("/assets/smoothed.obj");
+  const modelResponse = await loadModel("/assets/building.obj");
   loadedAssets["/assets/smoothed.obj"] = await parseOBJ(modelResponse);
   loadedAssets["/normals.png"] = await loadTexture(gl, "/normals.png");
 

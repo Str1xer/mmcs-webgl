@@ -19,7 +19,7 @@ function drawScene(gl, programInfo, loadedAssets) {
   mat4.perspective(projectionMatrix, fieldOfView, aspect, zNear, zFar);
 
   gl.uniform3fv(
-    programInfo.uniformLocations.lightPosition, [2, -2, 2]
+    programInfo.uniformLocations.lightPosition, [0, 0, 0]
   );
 
   gl.uniform3fv(
@@ -50,7 +50,7 @@ function drawScene(gl, programInfo, loadedAssets) {
     programInfo.uniformLocations.materialWeight, materialWeight
   );
 
-  drawMesh(gl, programInfo, loadedAssets["/assets/smoothed.obj"], projectionMatrix, [0, 0, -5], [rotationX, rotationY, rotationZ], [0, 0, 0], [0, 1, 0, 1], loadedAssets["/normals.png"], loadedAssets["/normals.png"])
+  drawMesh(gl, programInfo, loadedAssets["/assets/smoothed.obj"], projectionMatrix, [0, -10, -50], [rotationX, rotationY, rotationZ], [0, 0, 0], [0, 1, 0, 1], loadedAssets["/normals.png"])
 
   gl.flush();
 }
