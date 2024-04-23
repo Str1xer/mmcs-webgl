@@ -1,12 +1,14 @@
 import { initBuffers } from "./init-mesh-buffers.js";
 
-function drawMesh(gl, programInfo, mesh, projectionMatrix, translate = [0, 0, -6], rotation = [0, 0, 0], origins = [0, 0, 0], color, textureObject, normalObject) {
+function drawMesh(gl, programInfo, mesh, projectionMatrix, scale = [1, 1, 1], translate = [0, 0, -6], rotation = [0, 0, 0], origins = [0, 0, 0], color, textureObject, normalObject) {
     const buffers = initBuffers(gl, mesh, color);
 
     const modelViewMatrix = mat4.create();
     mat4.identity(modelViewMatrix);
 
     mat4.translate(modelViewMatrix, modelViewMatrix, translate)
+
+    mat4.scale(modelViewMatrix, modelViewMatrix, scale)
 
     const newrot = mat4.create();
     const q = mat4.create();

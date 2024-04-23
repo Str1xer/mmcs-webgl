@@ -76,9 +76,46 @@ async function main(canvas, vsSource, fsSource) {
   gl.enableVertexAttribArray(programInfo.attribLocations.textureCoord);
 
   const loadedAssets = {}
-  const modelResponse = await loadModel("/assets/building.obj");
-  loadedAssets["/assets/smoothed.obj"] = await parseOBJ(modelResponse);
+  loadedAssets["/assets/plane.obj"] = await parseOBJ(await loadModel("/assets/plane.obj"));
+
+  loadedAssets["/assets/roadOutside.obj"] = await parseOBJ(await loadModel("/assets/roadOutside.obj"));
+  loadedAssets["/assets/roadInside.obj"] = await parseOBJ(await loadModel("/assets/roadInside.obj"));
+
+  loadedAssets["/assets/finishTowers.obj"] = await parseOBJ(await loadModel("/assets/finishTowers.obj"));
+  loadedAssets["/assets/insideFlowers.obj"] = await parseOBJ(await loadModel("/assets/insideFlowers.obj"));
+  loadedAssets["/assets/objectLine.obj"] = await parseOBJ(await loadModel("/assets/objectLine.obj"));
+  loadedAssets["/assets/bushes1.obj"] = await parseOBJ(await loadModel("/assets/bushes1.obj"));
+  loadedAssets["/assets/bushes2.obj"] = await parseOBJ(await loadModel("/assets/bushes2.obj"));
+
+  loadedAssets["/assets/redTyres.obj"] = await parseOBJ(await loadModel("/assets/redTyres.obj"));
+  loadedAssets["/assets/whiteTyres.obj"] = await parseOBJ(await loadModel("/assets/whiteTyres.obj"));
+
+  loadedAssets["/assets/treeBases.obj"] = await parseOBJ(await loadModel("/assets/treeBases.obj"));
+  loadedAssets["/assets/treeHeaders1.obj"] = await parseOBJ(await loadModel("/assets/treeHeaders1.obj"));
+  loadedAssets["/assets/treeHeaders2.obj"] = await parseOBJ(await loadModel("/assets/treeHeaders2.obj"));
+
+  loadedAssets["/assets/sand.obj"] = await parseOBJ(await loadModel("/assets/sand.obj"));
+
+  loadedAssets["/assets/tribune.obj"] = await parseOBJ(await loadModel("/assets/tribune.obj"));
+  loadedAssets["/assets/tribuneBase.obj"] = await parseOBJ(await loadModel("/assets/tribuneBase.obj"));
+
+  loadedAssets["/assets/light.obj"] = await parseOBJ(await loadModel("/assets/light.obj"));
+
+  loadedAssets["/assets/finishHeader.obj"] = await parseOBJ(await loadModel("/assets/finishHeader.obj"));
+  loadedAssets["/assets/finishText.obj"] = await parseOBJ(await loadModel("/assets/finishText.obj"));
+
+  loadedAssets["/assets/vehicleTyres.obj"] = await parseOBJ(await loadModel("/assets/vehicleTyres.obj"));
+  loadedAssets["/assets/vehicle.obj"] = await parseOBJ(await loadModel("/assets/vehicle.obj"));
+
   loadedAssets["/normals.png"] = await loadTexture(gl, "/normals.png");
+  loadedAssets["/textures/mat0.png"] = await loadTexture(gl, "/textures/mat0.png");
+  loadedAssets["/textures/mat1.png"] = await loadTexture(gl, "/textures/mat1.png");
+  loadedAssets["/textures/mat2.png"] = await loadTexture(gl, "/textures/mat2.png");
+  loadedAssets["/textures/mat6.png"] = await loadTexture(gl, "/textures/mat6.png");
+  loadedAssets["/textures/mat9.png"] = await loadTexture(gl, "/textures/mat9.png");
+  loadedAssets["/textures/mat13.png"] = await loadTexture(gl, "/textures/mat13.png");
+  loadedAssets["/textures/mat15.png"] = await loadTexture(gl, "/textures/mat15.png");
+  loadedAssets["/textures/mat16.png"] = await loadTexture(gl, "/textures/mat16.png");
 
   console.log(loadedAssets);
 
