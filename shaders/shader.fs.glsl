@@ -1,6 +1,6 @@
 precision mediump float;
 
-uniform highp vec3 uLightPosition;
+uniform highp vec3 uLightPosition[4];
 uniform highp vec3 uAmbientLightColor;
 uniform highp vec3 uDiffuseLightColor;
 uniform highp vec3 uSpecularLightColor;
@@ -20,7 +20,7 @@ varying vec3 vTangent;
 varying vec3 vBitangent;
 
 varying vec3 vFragPos;
-varying vec3 vLightPos;
+// varying vec3 vLightPos;
 // varying vec3 vLightColor;
 // varying vec3 vFragColor;
 
@@ -41,18 +41,23 @@ vec3 light(vec3 lightDir, vec3 normal) {
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);
     vec3 specular = uSpecularLightColor * spec * attenuation * uIntensivity;
 
-    return uAmbientLightColor + diffuse + specular;
+    return  diffuse + specular;
 }
 
 void main(void) {
     vec4 textureColor = texture2D(uSampler, vTextureCoord);
 
     vec3 normalMapValue = texture2D(uNormalSampler, vTextureCoord).rgb;
-    normalMapValue = normalize(normalMapValue * 2.0 - 1.0); // Correct normalization
+    normalMapValue = normalize(normalMapValue * 2.0 - 1.0);
 
+    vec3 vLightWeighting = uAmbientLightColor;
+    
     vec3 viewDir = normalize(-vFragPos);
-    vec3 lightDir = normalize(vLightPos - vFragPos); // Use world space light direction
-    vec3 vLightWeighting = light(lightDir, normalize(vNormal)); // Pass world space normal for lighting
+
+    for(int i = 0; i < 4; ++i) {
+        vec3 lightDir = normalize(uLightPosition[i] - vFragPos);
+        vLightWeighting += light(lightDir, normalize(vNormal));
+    }
 
     gl_FragColor = vec4(textureColor.rgb * vLightWeighting, 1.0);
 }

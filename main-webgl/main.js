@@ -53,7 +53,7 @@ async function main(canvas, vsSource, fsSource) {
       sampler: gl.getUniformLocation(shaderProgram, "uSampler"),
       normalSampler: gl.getUniformLocation(shaderProgram, "uNormalSampler"),
 
-      lightPosition: gl.getUniformLocation(shaderProgram, "uLightPosition"),
+      // lightPosition: gl.getUniformLocation(shaderProgram, "uLightPosition"),
       ambientLightColor: gl.getUniformLocation(shaderProgram, "uAmbientLightColor"),
       diffusionLightColor: gl.getUniformLocation(shaderProgram, "uDiffuseLightColor"),
       specularLightColor: gl.getUniformLocation(shaderProgram, "uSpecularLightColor"),

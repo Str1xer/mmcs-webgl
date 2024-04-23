@@ -49,14 +49,12 @@ function parseOBJ(objText) {
         else if (array[0] === "f") {
             // face
             if (array.length !== 4) {
-                //obj.ctx.console.log("*** Error: face '"+line+"' not handled");
                 continue;
             }
 
 
             for (let i = 1; i < 4; ++i) {
                 if (!(array[i] in facemap)) {
-                    // add a new entry to the map and arrays
                     const f = array[i].split("/");
                     let vtx, nor, tex;
 
@@ -71,7 +69,6 @@ function parseOBJ(objText) {
                         nor = parseInt(f[2]) - 1;
                     }
                     else {
-                        //obj.ctx.console.log("*** Error: did not understand face '"+array[i]+"'");
                         return null;
                     }
 

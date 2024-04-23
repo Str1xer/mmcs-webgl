@@ -1,5 +1,6 @@
 import { drawMesh } from "./draw-mesh.js";
 import { cube } from "../model.js";
+import { placePointerLight } from "./place-pointer-light.js";
 
 function drawScene(gl, programInfo, loadedAssets) {
   gl.clearColor(0, 0, 0, 1.0);
@@ -18,9 +19,13 @@ function drawScene(gl, programInfo, loadedAssets) {
   const projectionMatrix = mat4.create();
   mat4.perspective(projectionMatrix, fieldOfView, aspect, zNear, zFar);
 
-  gl.uniform3fv(
-    programInfo.uniformLocations.lightPosition, [-4, 10, -1.25]
-  );  
+  placePointerLight(gl, programInfo.program, 0, [-1.5, 0, -12.5]);
+  placePointerLight(gl, programInfo.program, 1, [2, 0, -12.5]);
+  placePointerLight(gl, programInfo.program, 2, [-3.2, -1.9, -11.5]);
+  placePointerLight(gl, programInfo.program, 3, [-2.8, -1.9, -11.5]);
+  // placePointerLight(gl, programInfo.program, 2, [2, 0.5, -15.5]);
+  // placePointerLight(gl, programInfo.program, 1, [-4, 10, -1.25]);
+  // placePointerLight(gl, programInfo.program, 2, [-4, 10, -1.25]);
 
   gl.uniform3fv(
     programInfo.uniformLocations.ambientLightColor, ambientLightColor
