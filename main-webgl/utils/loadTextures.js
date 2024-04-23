@@ -1,5 +1,5 @@
 async function loadTexture(gl, assetPath) {
-    const response = await fetch(assetPath);
+    const response = await fetch((!debug ? "https://str1xer.github.io/mmcs-webgl" : "") + assetPath);
     const imageBlob = await response.blob();
     const imageBitmap = await createImageBitmap(imageBlob);
 

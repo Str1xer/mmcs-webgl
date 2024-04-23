@@ -1,5 +1,6 @@
 async function loadModel(assetPath) {
-    const response = await fetch(assetPath);
+
+    const response = await fetch((!debug ? "https://str1xer.github.io/mmcs-webgl" : "") + assetPath);
     const text = await response.text();
 
     return text;
