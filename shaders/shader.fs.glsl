@@ -8,21 +8,12 @@ uniform highp vec3 uSpecularLightColor;
 uniform highp float uLinearAttenuation;
 uniform highp float uQuadraticAttenuation;
 uniform highp float uIntensivity;
-uniform float uColorWeight;
-uniform float uDigitWeight;
-uniform float uMaterialWeight;
-
 uniform sampler2D uSampler;
 uniform sampler2D uNormalSampler;
 
 varying vec3 vNormal;
-varying vec3 vTangent;
-varying vec3 vBitangent;
 
 varying vec3 vFragPos;
-// varying vec3 vLightPos;
-// varying vec3 vLightColor;
-// varying vec3 vFragColor;
 
 varying highp vec2 vTextureCoord;
 

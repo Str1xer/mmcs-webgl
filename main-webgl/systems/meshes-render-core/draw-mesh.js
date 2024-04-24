@@ -59,7 +59,6 @@ function drawMesh(gl, programInfo, mesh, projectionMatrix, scale = [1, 1, 1], tr
     gl.bindTexture(gl.TEXTURE_2D, normalObject);
     gl.uniform1i(programInfo.uniformLocations.normalSampler, 1);
 
-
     {
         const vertexCount = mesh.indices.length;
         const type = gl.UNSIGNED_SHORT;
