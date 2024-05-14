@@ -1,17 +1,13 @@
 import { drawMesh } from "./draw-mesh.js";
 
 class MeshesRenderCore {
-    constructor(gl, programInfo) {
-        this.gl = gl;
-        this.programInfo = programInfo;
+    constructor() {
     }
 
     tick() {
         meshes.forEach(mesh => {
-            drawMesh(this.gl,
-                this.programInfo,
+            drawMesh(
                 mesh.mesh,
-                projectionMatrix,
                 mesh.transform.scale,
                 mesh.transform.location,
                 mesh.transform.rotation,

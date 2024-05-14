@@ -3,10 +3,11 @@ import { loadShaders } from "./utils/loadShaders.js";
 import { Scene } from "./scene.js";
 import { RenderCore } from "./systems/render-core/renderCore.js";
 import { SceneParticle } from "./sceneParticle.js";
+import { initShaderPrograms } from "./utils/init-shader-programs.js";
 
 let deltaTime = 0;
 
-async function main(canvas, vsSource, fsSource) {
+async function main() {
   canvas.width = document.body.clientWidth;
   canvas.height = document.body.clientHeight;
 
@@ -14,7 +15,7 @@ async function main(canvas, vsSource, fsSource) {
   await scene.preload();
   await scene.start();
 
-  var renderCore = new RenderCore(canvas, vsSource, fsSource);
+  var renderCore = new RenderCore(canvas);
 
   await renderCore.preload();
 
@@ -27,7 +28,7 @@ async function main(canvas, vsSource, fsSource) {
     then = now;
 
     scene.tick(deltaTime);
-    renderCore.tick();
+    renderCore.tick(deltaTime);
 
     requestAnimationFrame(render);
   }
@@ -36,10 +37,24 @@ async function main(canvas, vsSource, fsSource) {
 }
 
 async function preloads() {
-  var canvas = document.querySelector("#glcanvas1");
+  canvas = document.querySelector("#glcanvas1");
+
+  gl = canvas.getContext("webgl2", {
+    premultipliedAlpha: false
+  });
+
+  if (gl === null) {
+    alert(
+      "Unable to initialize WebGL. Your browser or machine may not support it."
+    );
+    return;
+  }
 
   const shaders = await loadShaders();
-  await main(canvas, shaders.vertexShader, shaders.fragmentShader);
+
+  shaderPrograms = await initShaderPrograms(shaders);
+
+  await main();
 
   initImGUI(canvas);
 }

@@ -1,32 +1,32 @@
 class LightingSystem {
-    constructor(gl, programInfo) {
-        this.gl = gl;
-        this.programInfo = programInfo;
+    constructor() {
     }
 
     tick() {
-        this.gl.uniform3fv(
-            this.programInfo.uniformLocations.ambientLightColor, ambientLightColor
+        gl.useProgram(shaderPrograms.mainPassProgram);
+        
+        gl.uniform3fv(
+            programInfoCollection.mainPassInfo.uniformLocations.ambientLightColor, ambientLightColor
         );
-        this.gl.uniform3fv(
-            this.programInfo.uniformLocations.diffusionLightColor, diffusionLightColor
+        gl.uniform3fv(
+            programInfoCollection.mainPassInfo.uniformLocations.diffusionLightColor, diffusionLightColor
         );
-        this.gl.uniform3fv(
-            this.programInfo.uniformLocations.specularLightColor, specularLightColor
+        gl.uniform3fv(
+            programInfoCollection.mainPassInfo.uniformLocations.specularLightColor, specularLightColor
         );
-        this.gl.uniform1f(
-            this.programInfo.uniformLocations.linearAttenuation, linearAttenuation
+        gl.uniform1f(
+            programInfoCollection.mainPassInfo.uniformLocations.linearAttenuation, linearAttenuation
         );
-        this.gl.uniform1f(
-            this.programInfo.uniformLocations.quadraticAttenuation, quadraticAttenuation
+        gl.uniform1f(
+            programInfoCollection.mainPassInfo.uniformLocations.quadraticAttenuation, quadraticAttenuation
         );
-        this.gl.uniform1f(
-            this.programInfo.uniformLocations.intensivity, intensivity
+        gl.uniform1f(
+            programInfoCollection.mainPassInfo.uniformLocations.intensivity, intensivity
         );
 
         lightSources.forEach((source, idx) => {
-            const uniformLocation = this.gl.getUniformLocation(this.programInfo.program, "uLightPosition[" + idx + "]");
-            this.gl.uniform3fv(uniformLocation, source.location);
+            const uniformLocation = gl.getUniformLocation(shaderPrograms.mainPassProgram, "uLightPosition[" + idx + "]");
+            gl.uniform3fv(uniformLocation, source.location);
         })
     }
 }

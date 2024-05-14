@@ -1,4 +1,4 @@
-function initBuffers(gl, model) {
+function initBuffers(model) {
 
   const positionBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
@@ -38,9 +38,6 @@ function initBuffers(gl, model) {
     bitangent: bitangentBuffer
   };
 }
-
-
-
 
 export { initBuffers };
 

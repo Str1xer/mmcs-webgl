@@ -1,79 +1,55 @@
-import { initShaderProgram } from "../../utils/init-shaders.js";
 import { LightingSystem } from "../lighting-render-core/ligthingCore.js";
 import { MeshesRenderCore } from "../meshes-render-core/meshRenderCore.js";
 import { ParticlesRenderCore } from "../particles-render-core/particlesRenderCore.js";
 import { loadTexture } from "../../utils/loadTextures.js";
 
 class RenderCore {
-    constructor(canvas, vsSource, fsSource) {
-        console.log("Render core construct");
+    constructor() {
+        console.log("Render core construct")
 
-        this.canvas = canvas;
-
-        this.gl = canvas.getContext("webgl2", {
-            premultipliedAlpha: false
-        });
-
-        if (this.gl === null) {
-            alert(
-                "Unable to initialize WebGL. Your browser or machine may not support it."
-            );
-            return;
-        }
-
-        this.shaderProgram = initShaderProgram(this.gl, vsSource, fsSource);
-        this.gl.useProgram(this.shaderProgram);
-
-        this.programInfo = {
-            program: this.shaderProgram,
+        programInfoCollection.mainPassInfo = {
             attribLocations: {
-                vertexPosition: this.gl.getAttribLocation(this.shaderProgram, "aVertexPosition"),
-                vertexNormal: this.gl.getAttribLocation(this.shaderProgram, "aVertexNormal"),
-                // vertexTangent: this.gl.getAttribLocation(this.shaderProgram, "aVertexTangent"),
-                // vertexBitangent: this.gl.getAttribLocation(this.shaderProgram, "aVertexBitangent"),
-                // vertexColor: this.gl.getAttribLocation(this.shaderProgram, "aVertexColor"),
-                textureCoord: this.gl.getAttribLocation(this.shaderProgram, "aTextureCoord"),
+                vertexPosition: gl.getAttribLocation(shaderPrograms.mainPassProgram, "aVertexPosition"),
+                vertexNormal: gl.getAttribLocation(shaderPrograms.mainPassProgram, "aVertexNormal"),
+                textureCoord: gl.getAttribLocation(shaderPrograms.mainPassProgram, "aTextureCoord"),
             },
             uniformLocations: {
-                projectionMatrix: this.gl.getUniformLocation(this.shaderProgram, "uProjectionMatrix"),
-                modelViewMatrix: this.gl.getUniformLocation(this.shaderProgram, "uModelViewMatrix"),
-                sampler: this.gl.getUniformLocation(this.shaderProgram, "uSampler"),
-                normalSampler: this.gl.getUniformLocation(this.shaderProgram, "uNormalSampler"),
+                projectionMatrix: gl.getUniformLocation(shaderPrograms.mainPassProgram, "uProjectionMatrix"),
+                modelViewMatrix: gl.getUniformLocation(shaderPrograms.mainPassProgram, "uModelViewMatrix"),
+                sampler: gl.getUniformLocation(shaderPrograms.mainPassProgram, "uSampler"),
+                normalSampler: gl.getUniformLocation(shaderPrograms.mainPassProgram, "uNormalSampler"),
 
-                ambientLightColor: this.gl.getUniformLocation(this.shaderProgram, "uAmbientLightColor"),
-                diffusionLightColor: this.gl.getUniformLocation(this.shaderProgram, "uDiffuseLightColor"),
-                specularLightColor: this.gl.getUniformLocation(this.shaderProgram, "uSpecularLightColor"),
+                ambientLightColor: gl.getUniformLocation(shaderPrograms.mainPassProgram, "uAmbientLightColor"),
+                diffusionLightColor: gl.getUniformLocation(shaderPrograms.mainPassProgram, "uDiffuseLightColor"),
+                specularLightColor: gl.getUniformLocation(shaderPrograms.mainPassProgram, "uSpecularLightColor"),
 
-                linearAttenuation: this.gl.getUniformLocation(this.shaderProgram, "uLinearAttenuation"),
-                quadraticAttenuation: this.gl.getUniformLocation(this.shaderProgram, "uQuadraticAttenuation"),
-                intensivity: this.gl.getUniformLocation(this.shaderProgram, "uIntensivity"),
+                linearAttenuation: gl.getUniformLocation(shaderPrograms.mainPassProgram, "uLinearAttenuation"),
+                quadraticAttenuation: gl.getUniformLocation(shaderPrograms.mainPassProgram, "uQuadraticAttenuation"),
+                intensivity: gl.getUniformLocation(shaderPrograms.mainPassProgram, "uIntensivity"),
 
-                materialMode: this.gl.getUniformLocation(this.shaderProgram, "uParticle"),
+                materialMode: gl.getUniformLocation(shaderPrograms.mainPassProgram, "uParticle"),
             },
         };
 
-        this.gl.enableVertexAttribArray(this.programInfo.attribLocations.vertexPosition);
-        this.gl.enableVertexAttribArray(this.programInfo.attribLocations.vertexNormal);
-        this.gl.enableVertexAttribArray(this.programInfo.attribLocations.vertexColor);
-        this.gl.enableVertexAttribArray(this.programInfo.attribLocations.textureCoord);
-
-        this.meshRenderCore = new MeshesRenderCore(this.gl, this.programInfo);
-        this.ligtingCore = new LightingSystem(this.gl, this.programInfo);
-        this.particlesRenderCore = new ParticlesRenderCore(this.gl, this.programInfo);
+        this.meshRenderCore = new MeshesRenderCore();
+        this.ligtingCore = new LightingSystem();
+        this.particlesRenderCore = new ParticlesRenderCore();
     }
 
     async preload() {
-        // loadedAssets["/textures/mat0.png"] = await loadTexture(this.gl, "/textures/mat0.png");
-        // loadedAssets["/textures/mat1.png"] = await loadTexture(this.gl, "/textures/mat1.png");
-        // loadedAssets["/textures/mat2.png"] = await loadTexture(this.gl, "/textures/mat2.png");
-        // loadedAssets["/textures/mat6.png"] = await loadTexture(this.gl, "/textures/mat6.png");
-        // loadedAssets["/textures/mat9.png"] = await loadTexture(this.gl, "/textures/mat9.png");
-        // loadedAssets["/textures/mat13.png"] = await loadTexture(this.gl, "/textures/mat13.png");
-        // loadedAssets["/textures/mat15.png"] = await loadTexture(this.gl, "/textures/mat15.png");
-        // loadedAssets["/textures/mat16.png"] = await loadTexture(this.gl, "/textures/mat16.png");
+        loadedAssets["/textures/mat0.png"] = await loadTexture("/textures/mat0.png");
+        loadedAssets["/textures/mat1.png"] = await loadTexture("/textures/mat1.png");
+        loadedAssets["/textures/mat2.png"] = await loadTexture("/textures/mat2.png");
+        loadedAssets["/textures/mat6.png"] = await loadTexture("/textures/mat6.png");
+        loadedAssets["/textures/mat9.png"] = await loadTexture("/textures/mat9.png");
+        loadedAssets["/textures/mat13.png"] = await loadTexture("/textures/mat13.png");
+        loadedAssets["/textures/mat15.png"] = await loadTexture("/textures/mat15.png");
+        loadedAssets["/textures/mat16.png"] = await loadTexture("/textures/mat16.png");
 
-        loadedAssets["/textures/Smoke.png"] = await loadTexture(this.gl, "/textures/Smoke.png");
+        loadedAssets["/textures/Smoke.png"] = await loadTexture("/textures/Smoke.png");
+        loadedAssets["/textures/iskra.png"] = await loadTexture("/textures/iskra.png");
 
+        this.particlesRenderCore.preload();
         // console.log("Render core preload");
     }
 
@@ -81,39 +57,36 @@ class RenderCore {
         // console.log("Render core start");
     }
 
-    tick() {
+    tick(deltaTime) {
         // console.log("Render core tick");
 
-        this.gl.clearColor(111/255, 217/255, 208/255, 1.0);
+        gl.clearColor(111 / 255, 217 / 255, 208 / 255, 1.0);
 
-        this.gl.clearDepth(1.0);
-        this.gl.enable(this.gl.DEPTH_TEST);
-        this.gl.depthFunc(this.gl.LEQUAL);
+        gl.clearDepth(1.0);
+        gl.enable(gl.DEPTH_TEST);
+        gl.depthFunc(gl.LEQUAL);
 
-        this.gl.enable(this.gl.ALPHA_TEST);
+        gl.enable(gl.BLEND);
+        gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
-        this.gl.enable(this.gl.BLEND);
-        this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
+        gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true)
 
-        this.gl.pixelStorei(this.gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true)
-
-        this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
         const fieldOfView = (45 * Math.PI) / 180;
-        const aspect = this.gl.canvas.clientWidth / this.gl.canvas.clientHeight;
+        const aspect = gl.canvas.clientWidth / gl.canvas.clientHeight;
         const zNear = 0.1;
         const zFar = 100.0;
         projectionMatrix = mat4.create();
         mat4.perspective(projectionMatrix, fieldOfView, aspect, zNear, zFar);
 
         // Renders
-        this.gl.depthMask(false);
-        this.particlesRenderCore.tick();
-        this.gl.depthMask(true);
+        gl.depthMask(false);
+        this.particlesRenderCore.tick(deltaTime);
+        gl.depthMask(true);
         this.meshRenderCore.tick();
         this.ligtingCore.tick();
-
-        this.gl.flush();
+        gl.flush();
     }
 }
 

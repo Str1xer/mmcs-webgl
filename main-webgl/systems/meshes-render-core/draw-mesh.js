@@ -1,7 +1,10 @@
 import { initBuffers } from "./init-mesh-buffers.js";
 
-function drawMesh(gl, programInfo, mesh, projectionMatrix, scale = [1, 1, 1], translate = [0, 0, -6], rotation = [0, 0, 0], origins = [0, 0, 0], color, textureObjects, options) {
-    const buffers = initBuffers(gl, mesh, color);
+function drawMesh(mesh, scale = [1, 1, 1], translate = [0, 0, -6], rotation = [0, 0, 0], origins = [0, 0, 0], color, textureObjects, options) {
+    gl.useProgram(shaderPrograms.mainPassProgram);
+    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
+    const buffers = initBuffers(mesh, color);
 
     const modelViewMatrix = mat4.create();
     mat4.identity(modelViewMatrix);
@@ -21,47 +24,44 @@ function drawMesh(gl, programInfo, mesh, projectionMatrix, scale = [1, 1, 1], tr
 
     // set vertex positions 
     gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position);
-    gl.vertexAttribPointer(programInfo.attribLocations.vertexPosition, 3, gl.FLOAT, false, 0, 0);
+    gl.vertexAttribPointer(programInfoCollection.mainPassInfo.attribLocations.vertexPosition, 3, gl.FLOAT, false, 0, 0);
 
     // set vertex normals
     gl.bindBuffer(gl.ARRAY_BUFFER, buffers.normal);
-    gl.vertexAttribPointer(programInfo.attribLocations.vertexNormal, 3, gl.FLOAT, false, 0, 0);
-
-    // set vertex tangents
-    // gl.bindBuffer(gl.ARRAY_BUFFER, buffers.tangent);
-    // gl.vertexAttribPointer(programInfo.attribLocations.vertexTangent, 3, gl.FLOAT, false, 0, 0);
-
-    // set vertext bitangents
-    // gl.bindBuffer(gl.ARRAY_BUFFER, buffers.bitangent);
-    // gl.vertexAttribPointer(programInfo.attribLocations.vertexBitangent, 3, gl.FLOAT, false, 0, 0);
+    gl.vertexAttribPointer(programInfoCollection.mainPassInfo.attribLocations.vertexNormal, 3, gl.FLOAT, false, 0, 0);
 
     // set texture coordinates
     gl.bindBuffer(gl.ARRAY_BUFFER, buffers.textureCoord);
-    gl.vertexAttribPointer(programInfo.attribLocations.textureCoord, 2, gl.FLOAT, false, 0, 0,);
+    gl.vertexAttribPointer(programInfoCollection.mainPassInfo.attribLocations.textureCoord, 2, gl.FLOAT, false, 0, 0,);
 
     // set vertex colors
     // gl.bindBuffer(gl.ARRAY_BUFFER, buffers.color);
-    // gl.vertexAttribPointer(programInfo.attribLocations.vertexColor, 4, gl.FLOAT, false, 0, 0);
+    // gl.vertexAttribPointer(programInfoCollection.mainPassInfo.attribLocations.vertexColor, 4, gl.FLOAT, false, 0, 0);
 
     // set incdices of triangles
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.indices);
 
     gl.uniform1f(
-        programInfo.uniformLocations.materialMode, options.type === "Particle" ? 1 : 0
+        programInfoCollection.mainPassInfo.uniformLocations.materialMode, options.type === "Particle" ? 1 : 0
     );
 
     // project and model view matrix
-    gl.uniformMatrix4fv(programInfo.uniformLocations.projectionMatrix, false, projectionMatrix);
-    gl.uniformMatrix4fv(programInfo.uniformLocations.modelViewMatrix, false, modelViewMatrix);
+    gl.uniformMatrix4fv(programInfoCollection.mainPassInfo.uniformLocations.projectionMatrix, false, projectionMatrix);
+    gl.uniformMatrix4fv(programInfoCollection.mainPassInfo.uniformLocations.modelViewMatrix, false, modelViewMatrix);
 
     // texture samples
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, textureObjects[0]);
-    gl.uniform1i(programInfo.uniformLocations.sampler, 0);
+    gl.uniform1i(programInfoCollection.mainPassInfo.uniformLocations.sampler, 0);
 
     gl.activeTexture(gl.TEXTURE0 + 1);
     gl.bindTexture(gl.TEXTURE_2D, textureObjects[1]);
-    gl.uniform1i(programInfo.uniformLocations.normalSampler, 1);
+    gl.uniform1i(programInfoCollection.mainPassInfo.uniformLocations.normalSampler, 1);
+
+    gl.enableVertexAttribArray(programInfoCollection.mainPassInfo.attribLocations.vertexPosition);
+    gl.enableVertexAttribArray(programInfoCollection.mainPassInfo.attribLocations.vertexNormal);
+    gl.enableVertexAttribArray(programInfoCollection.mainPassInfo.attribLocations.vertexColor);
+    gl.enableVertexAttribArray(programInfoCollection.mainPassInfo.attribLocations.textureCoord);
 
     {
         const vertexCount = mesh.indices.length;
