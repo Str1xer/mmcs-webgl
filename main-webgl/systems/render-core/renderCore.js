@@ -63,14 +63,14 @@ class RenderCore {
     }
 
     async preload() {
-        loadedAssets["/textures/mat0.png"] = await loadTexture(this.gl, "/textures/mat0.png");
-        loadedAssets["/textures/mat1.png"] = await loadTexture(this.gl, "/textures/mat1.png");
-        loadedAssets["/textures/mat2.png"] = await loadTexture(this.gl, "/textures/mat2.png");
-        loadedAssets["/textures/mat6.png"] = await loadTexture(this.gl, "/textures/mat6.png");
-        loadedAssets["/textures/mat9.png"] = await loadTexture(this.gl, "/textures/mat9.png");
-        loadedAssets["/textures/mat13.png"] = await loadTexture(this.gl, "/textures/mat13.png");
-        loadedAssets["/textures/mat15.png"] = await loadTexture(this.gl, "/textures/mat15.png");
-        loadedAssets["/textures/mat16.png"] = await loadTexture(this.gl, "/textures/mat16.png");
+        // loadedAssets["/textures/mat0.png"] = await loadTexture(this.gl, "/textures/mat0.png");
+        // loadedAssets["/textures/mat1.png"] = await loadTexture(this.gl, "/textures/mat1.png");
+        // loadedAssets["/textures/mat2.png"] = await loadTexture(this.gl, "/textures/mat2.png");
+        // loadedAssets["/textures/mat6.png"] = await loadTexture(this.gl, "/textures/mat6.png");
+        // loadedAssets["/textures/mat9.png"] = await loadTexture(this.gl, "/textures/mat9.png");
+        // loadedAssets["/textures/mat13.png"] = await loadTexture(this.gl, "/textures/mat13.png");
+        // loadedAssets["/textures/mat15.png"] = await loadTexture(this.gl, "/textures/mat15.png");
+        // loadedAssets["/textures/mat16.png"] = await loadTexture(this.gl, "/textures/mat16.png");
 
         loadedAssets["/textures/Smoke.png"] = await loadTexture(this.gl, "/textures/Smoke.png");
 
@@ -89,6 +89,8 @@ class RenderCore {
         this.gl.clearDepth(1.0);
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.depthFunc(this.gl.LEQUAL);
+
+        this.gl.enable(this.gl.ALPHA_TEST);
 
         this.gl.enable(this.gl.BLEND);
         this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
