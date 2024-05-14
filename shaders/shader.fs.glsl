@@ -11,6 +11,8 @@ uniform highp float uIntensivity;
 uniform sampler2D uSampler;
 uniform sampler2D uNormalSampler;
 
+uniform lowp float uParticle;
+
 varying vec3 vNormal;
 
 varying vec3 vFragPos;
@@ -32,7 +34,7 @@ vec3 light(vec3 lightDir, vec3 normal) {
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), shininess);
     vec3 specular = uSpecularLightColor * spec * attenuation * uIntensivity;
 
-    return  diffuse + specular;
+    return diffuse + specular;
 }
 
 void main(void) {
@@ -42,13 +44,13 @@ void main(void) {
     normalMapValue = normalize(normalMapValue * 2.0 - 1.0);
 
     vec3 vLightWeighting = uAmbientLightColor;
-    
+
     vec3 viewDir = normalize(-vFragPos);
 
-    for(int i = 0; i < 4; ++i) {
+    for(int i = 0; i < 1; ++i) {
         vec3 lightDir = normalize(uLightPosition[i] - vFragPos);
         vLightWeighting += light(lightDir, normalize(vNormal));
     }
 
-    gl_FragColor = vec4(textureColor.rgb * vLightWeighting, 1.0);
+    gl_FragColor = vec4(textureColor.rgb * uParticle + (textureColor.rgb * vLightWeighting) * (1.0 - uParticle), textureColor.a - 0.05 * uParticle);
 }

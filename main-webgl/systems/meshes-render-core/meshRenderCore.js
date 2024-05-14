@@ -17,7 +17,12 @@ class MeshesRenderCore {
                 mesh.transform.rotation,
                 mesh.origin,
                 mesh.color,
-                loadedAssets[mesh.texture]
+                [
+                    loadedAssets[mesh.texture]
+                ],
+                {
+                    type: "Mesh"
+                }
             )
         });
     }

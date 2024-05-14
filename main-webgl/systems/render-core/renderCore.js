@@ -1,6 +1,7 @@
 import { initShaderProgram } from "../../utils/init-shaders.js";
 import { LightingSystem } from "../lighting-render-core/ligthingCore.js";
 import { MeshesRenderCore } from "../meshes-render-core/meshRenderCore.js";
+import { ParticlesRenderCore } from "../particles-render-core/particlesRenderCore.js";
 import { loadTexture } from "../../utils/loadTextures.js";
 
 class RenderCore {
@@ -9,7 +10,9 @@ class RenderCore {
 
         this.canvas = canvas;
 
-        this.gl = canvas.getContext("webgl2");
+        this.gl = canvas.getContext("webgl2", {
+            premultipliedAlpha: false
+        });
 
         if (this.gl === null) {
             alert(
@@ -26,9 +29,9 @@ class RenderCore {
             attribLocations: {
                 vertexPosition: this.gl.getAttribLocation(this.shaderProgram, "aVertexPosition"),
                 vertexNormal: this.gl.getAttribLocation(this.shaderProgram, "aVertexNormal"),
-                vertexTangent: this.gl.getAttribLocation(this.shaderProgram, "aVertexTangent"),
-                vertexBitangent: this.gl.getAttribLocation(this.shaderProgram, "aVertexBitangent"),
-                vertexColor: this.gl.getAttribLocation(this.shaderProgram, "aVertexColor"),
+                // vertexTangent: this.gl.getAttribLocation(this.shaderProgram, "aVertexTangent"),
+                // vertexBitangent: this.gl.getAttribLocation(this.shaderProgram, "aVertexBitangent"),
+                // vertexColor: this.gl.getAttribLocation(this.shaderProgram, "aVertexColor"),
                 textureCoord: this.gl.getAttribLocation(this.shaderProgram, "aTextureCoord"),
             },
             uniformLocations: {
@@ -45,9 +48,7 @@ class RenderCore {
                 quadraticAttenuation: this.gl.getUniformLocation(this.shaderProgram, "uQuadraticAttenuation"),
                 intensivity: this.gl.getUniformLocation(this.shaderProgram, "uIntensivity"),
 
-                colorWeight: this.gl.getUniformLocation(this.shaderProgram, "uColorWeight"),
-                digitWeight: this.gl.getUniformLocation(this.shaderProgram, "uDigitWeight"),
-                materialWeight: this.gl.getUniformLocation(this.shaderProgram, "uMaterialWeight"),
+                materialMode: this.gl.getUniformLocation(this.shaderProgram, "uParticle"),
             },
         };
 
@@ -58,6 +59,7 @@ class RenderCore {
 
         this.meshRenderCore = new MeshesRenderCore(this.gl, this.programInfo);
         this.ligtingCore = new LightingSystem(this.gl, this.programInfo);
+        this.particlesRenderCore = new ParticlesRenderCore(this.gl, this.programInfo);
     }
 
     async preload() {
@@ -70,21 +72,27 @@ class RenderCore {
         loadedAssets["/textures/mat15.png"] = await loadTexture(this.gl, "/textures/mat15.png");
         loadedAssets["/textures/mat16.png"] = await loadTexture(this.gl, "/textures/mat16.png");
 
-        console.log("Render core preload");
+        loadedAssets["/textures/Smoke.png"] = await loadTexture(this.gl, "/textures/Smoke.png");
+
+        // console.log("Render core preload");
     }
 
     async start() {
-        console.log("Render core start");
+        // console.log("Render core start");
     }
 
     tick() {
-        console.log("Render core tick");
+        // console.log("Render core tick");
 
-        this.gl.clearColor(0, 0, 0, 1.0);
+        this.gl.clearColor(111/255, 217/255, 208/255, 1.0);
+
         this.gl.clearDepth(1.0);
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.depthFunc(this.gl.LEQUAL);
-        // gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
+
+        this.gl.enable(this.gl.BLEND);
+        this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
+
         this.gl.pixelStorei(this.gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true)
 
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
@@ -96,6 +104,10 @@ class RenderCore {
         projectionMatrix = mat4.create();
         mat4.perspective(projectionMatrix, fieldOfView, aspect, zNear, zFar);
 
+        // Renders
+        this.gl.depthMask(false);
+        this.particlesRenderCore.tick();
+        this.gl.depthMask(true);
         this.meshRenderCore.tick();
         this.ligtingCore.tick();
 
