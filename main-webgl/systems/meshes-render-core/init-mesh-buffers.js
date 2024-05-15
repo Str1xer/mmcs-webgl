@@ -12,14 +12,6 @@ function initBuffers(model) {
   gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(model.vertexNormals), gl.STATIC_DRAW);
 
-  const tangentBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, tangentBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(model.tangents), gl.STATIC_DRAW);
-
-  const bitangentBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, bitangentBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(model.bitangents), gl.STATIC_DRAW);
-
   const textureCoordBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, textureCoordBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(model.textureCoord), gl.STATIC_DRAW,);
@@ -34,8 +26,6 @@ function initBuffers(model) {
     indices: indexBuffer,
     textureCoord: textureCoordBuffer,
     color: colorBuffer,
-    tangent: tangentBuffer,
-    bitangent: bitangentBuffer
   };
 }
 

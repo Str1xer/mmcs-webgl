@@ -52,5 +52,5 @@ void main(void) {
         vLightWeighting += light(lightDir, normalize(vNormal));
     }
 
-    gl_FragColor = vec4(textureColor.rgb * uParticle + (textureColor.rgb * vLightWeighting) * (1.0 - uParticle), textureColor.a - 0.05 * uParticle);
+    gl_FragColor = vec4(textureColor.rgb * uParticle + (textureColor.rgb * vLightWeighting) * (1.0 - uParticle), textureColor.a - 0.15 * uParticle);
 }

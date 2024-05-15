@@ -1,5 +1,6 @@
 import { drawMesh } from "../meshes-render-core/draw-mesh.js";
 import { Particle1 } from "../../content/particles/particle2.js";
+import { draw } from "../meshes-render-core/draw.js";
 
 class ParticlesRenderCore {
     constructor() {
@@ -12,23 +13,6 @@ class ParticlesRenderCore {
 
     tick(deltaTime) {
         this.particle1.tick(deltaTime);
-
-        particles.forEach(particle => {
-            drawMesh(
-                particle.mesh.mesh,
-                particle.mesh.transform.scale,
-                particle.mesh.transform.location,
-                particle.mesh.transform.rotation,
-                particle.mesh.origin,
-                particle.mesh.color,
-                [
-                    loadedAssets[particle.mesh.texture]
-                ],
-                {
-                    type: "Particle"
-                }
-            )
-        });
     }
 }
 

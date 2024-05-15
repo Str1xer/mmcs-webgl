@@ -31,6 +31,18 @@ class RenderCore {
             },
         };
 
+        programInfoCollection.defaultParticleInfo = {
+            attribLocations: {
+                vertexPosition: gl.getAttribLocation(shaderPrograms.deafultParticleProgram, "aVertexPosition"),
+                textureCoord: gl.getAttribLocation(shaderPrograms.deafultParticleProgram, "aTextureCoord"),
+            },
+            uniformLocations: {
+                projectionMatrix: gl.getUniformLocation(shaderPrograms.deafultParticleProgram, "uProjectionMatrix"),
+                modelViewMatrix: gl.getUniformLocation(shaderPrograms.deafultParticleProgram, "uModelViewMatrix"),
+                sampler: gl.getUniformLocation(shaderPrograms.deafultParticleProgram, "uSampler"),
+            },
+        };
+
         this.meshRenderCore = new MeshesRenderCore();
         this.ligtingCore = new LightingSystem();
         this.particlesRenderCore = new ParticlesRenderCore();
@@ -47,7 +59,7 @@ class RenderCore {
         loadedAssets["/textures/mat16.png"] = await loadTexture("/textures/mat16.png");
 
         loadedAssets["/textures/Smoke.png"] = await loadTexture("/textures/Smoke.png");
-        loadedAssets["/textures/iskra.png"] = await loadTexture("/textures/iskra.png");
+        loadedAssets["/textures/spark.png"] = await loadTexture("/textures/spark.png");
 
         this.particlesRenderCore.preload();
         // console.log("Render core preload");

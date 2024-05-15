@@ -1,3 +1,5 @@
+import { draw } from "../../systems/meshes-render-core/draw.js"
+
 const clamp = (value, min, max) => {
     if (value < min) return min;
     if (value > max) return max;
@@ -8,6 +10,7 @@ class Particle1 {
     constructor() {
         this.timeFromSpawn = 0.0;
         this.toggle = true;
+        this.particles = [];
     }
 
     async preload() {
@@ -21,7 +24,7 @@ class Particle1 {
     smoke() {
         const size = 0.4 + Math.random() * 0.6;
 
-        particles.push({
+        this.particles.push({
             lifetime: 1 + Math.random(),
             vlocity: [0.04, 0.0075, 0],
             initScale: size,
@@ -40,7 +43,7 @@ class Particle1 {
     }
 
     tick(deltaTime) {
-        particles = particles.filter(elem => {
+        this.particles = this.particles.filter(elem => {
             elem.lifetime -= deltaTime;
             elem.mesh.transform.location[0] += elem.vlocity[0];
             elem.mesh.transform.location[1] += elem.vlocity[1];
@@ -50,11 +53,24 @@ class Particle1 {
             elem.mesh.transform.scale[1] = elem.initScale * currentRatioScale * currentRatioScale;
             elem.mesh.transform.scale[2] = elem.initScale * currentRatioScale * currentRatioScale;
 
-            // Remove particle if its lifetime is <= 0
+            draw(
+                {
+                    mesh: elem.mesh.mesh,
+                    transform: elem.mesh.transform
+                },
+                {
+                    domain: "particle",
+                    color: [0, 0, 0, 1],
+                    textureObjects: [
+                        loadedAssets[elem.mesh.texture]
+                    ]
+                }
+            )
+
             return elem.lifetime > 0;
         });
 
-        if (this.timeFromSpawn > 0.03) {
+        if (this.timeFromSpawn > 0.025) {
             this.smoke();
             this.timeFromSpawn = 0;
         } else {

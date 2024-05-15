@@ -63,12 +63,16 @@ function drawMesh(mesh, scale = [1, 1, 1], translate = [0, 0, -6], rotation = [0
     gl.enableVertexAttribArray(programInfoCollection.mainPassInfo.attribLocations.vertexColor);
     gl.enableVertexAttribArray(programInfoCollection.mainPassInfo.attribLocations.textureCoord);
 
-    {
-        const vertexCount = mesh.indices.length;
-        const type = gl.UNSIGNED_SHORT;
-        const offset = 0;
-        gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
-    }
+    const vertexCount = mesh.indices.length;
+    const type = gl.UNSIGNED_SHORT;
+    const offset = 0;
+    gl.drawElements(gl.TRIANGLES, vertexCount, type, offset);
+
+    gl.deleteBuffer(buffers.position);
+    gl.deleteBuffer(buffers.textureCoord);
+    gl.deleteBuffer(buffers.indices);
+    gl.deleteBuffer(buffers.normal);
+    gl.deleteBuffer(buffers.color);
 }
 
 
