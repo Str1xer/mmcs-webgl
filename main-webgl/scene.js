@@ -1,39 +1,82 @@
 import { parseOBJ, loadModel } from "./utils/loadModel.js"
 
 
-class Scene {
+class Scene_Matvey {
 
     async preload() {
-        loadedAssets["plane"] = await parseOBJ(await loadModel("/assets/plane.obj"));
 
-        loadedAssets["roadOutside"] = await parseOBJ(await loadModel("/assets/roadOutside.obj"));
-        loadedAssets["roadInside"] = await parseOBJ(await loadModel("/assets/roadInside.obj"));
+        loadedAssets["trebuchet"] = await parseOBJ(await loadModel("/assets/scene_Matvey/trebuchet.obj"));
 
-        loadedAssets["finishTowers"] = await parseOBJ(await loadModel("/assets/finishTowers.obj"));
-        loadedAssets["insideFlowers"] = await parseOBJ(await loadModel("/assets/insideFlowers.obj"));
-        loadedAssets["objectLine"] = await parseOBJ(await loadModel("/assets/objectLine.obj"));
-        loadedAssets["bushes1"] = await parseOBJ(await loadModel("/assets/bushes1.obj"));
-        loadedAssets["bushes2"] = await parseOBJ(await loadModel("/assets/bushes2.obj"));
+    }
 
-        loadedAssets["redTyres"] = await parseOBJ(await loadModel("/assets/redTyres.obj"));
-        loadedAssets["whiteTyres"] = await parseOBJ(await loadModel("/assets/whiteTyres.obj"));
+    async start() {
 
-        loadedAssets["treeBases"] = await parseOBJ(await loadModel("/assets/treeBases.obj"));
-        loadedAssets["treeHeaders1"] = await parseOBJ(await loadModel("/assets/treeHeaders1.obj"));
-        loadedAssets["treeHeaders2"] = await parseOBJ(await loadModel("/assets/treeHeaders2.obj"));
+        lightSources = [
+            {
+                location: [0, 0, -100],
+                intensivity: 1.
+            },
+        ]
 
-        loadedAssets["sand"] = await parseOBJ(await loadModel("/assets/sand.obj"));
+        meshes = [
+    
+            {
+                mesh: loadedAssets["trebuchet"],
+                transform: {
+                    location: [0, -1.5, -5],
+                    rotation: [0, Math.PI / 4, 0],
+                    scale: [1,1,1],
+                },
+                origin: [0, 0, 0],
+                color: [0, 1, 0, 1],
+                texture: "/textures/mat2.png"
+            },
 
-        loadedAssets["tribune"] = await parseOBJ(await loadModel("/assets/tribune.obj"));
-        loadedAssets["tribuneBase"] = await parseOBJ(await loadModel("/assets/tribuneBase.obj"));
+        ]
 
-        loadedAssets["light"] = await parseOBJ(await loadModel("/assets/light.obj"));
+    }
 
-        loadedAssets["finishHeader"] = await parseOBJ(await loadModel("/assets/finishHeader.obj"));
-        loadedAssets["finishText"] = await parseOBJ(await loadModel("/assets/finishText.obj"));
+    tick() {
+        
+    }
 
-        loadedAssets["vehicleTyres"] = await parseOBJ(await loadModel("/assets/vehicleTyres.obj"));
-        loadedAssets["vehicle"] = await parseOBJ(await loadModel("/assets/vehicle.obj"));
+}
+
+class Scene_Egor {
+
+    async preload() {
+
+        loadedAssets["plane"] = await parseOBJ(await loadModel("/assets/scene_Egor/plane.obj"));
+
+        loadedAssets["roadOutside"] = await parseOBJ(await loadModel("/assets/scene_Egor/roadOutside.obj"));
+        loadedAssets["roadInside"] = await parseOBJ(await loadModel("/assets/scene_Egor/roadInside.obj"));
+
+        loadedAssets["finishTowers"] = await parseOBJ(await loadModel("/assets/scene_Egor/finishTowers.obj"));
+        loadedAssets["insideFlowers"] = await parseOBJ(await loadModel("/assets/scene_Egor/insideFlowers.obj"));
+        loadedAssets["objectLine"] = await parseOBJ(await loadModel("/assets/scene_Egor/objectLine.obj"));
+        loadedAssets["bushes1"] = await parseOBJ(await loadModel("/assets/scene_Egor/bushes1.obj"));
+        loadedAssets["bushes2"] = await parseOBJ(await loadModel("/assets/scene_Egor/bushes2.obj"));
+
+        loadedAssets["redTyres"] = await parseOBJ(await loadModel("/assets/scene_Egor/redTyres.obj"));
+        loadedAssets["whiteTyres"] = await parseOBJ(await loadModel("/assets/scene_Egor/whiteTyres.obj"));
+
+        loadedAssets["treeBases"] = await parseOBJ(await loadModel("/assets/scene_Egor/treeBases.obj")); //*
+        loadedAssets["treeHeaders1"] = await parseOBJ(await loadModel("/assets/scene_Egor/treeHeaders1.obj"));
+        loadedAssets["treeHeaders2"] = await parseOBJ(await loadModel("/assets/scene_Egor/treeHeaders2.obj"));
+
+        loadedAssets["sand"] = await parseOBJ(await loadModel("/assets/scene_Egor/sand.obj"));
+
+        loadedAssets["tribune"] = await parseOBJ(await loadModel("/assets/scene_Egor/tribune.obj"));
+        loadedAssets["tribuneBase"] = await parseOBJ(await loadModel("/assets/scene_Egor/tribuneBase.obj"));
+
+        loadedAssets["light"] = await parseOBJ(await loadModel("/assets/scene_Egor/light.obj"));
+
+        loadedAssets["finishHeader"] = await parseOBJ(await loadModel("/assets/scene_Egor/finishHeader.obj"));
+        loadedAssets["finishText"] = await parseOBJ(await loadModel("/assets/scene_Egor/finishText.obj"));
+
+        loadedAssets["vehicleTyres"] = await parseOBJ(await loadModel("/assets/scene_Egor/vehicleTyres.obj"));
+        loadedAssets["vehicle"] = await parseOBJ(await loadModel("/assets/scene_Egor/vehicle.obj"));
+
     }
 
     async start() {
@@ -266,7 +309,8 @@ class Scene {
                 origin: [0, 0, 1.25],
                 color: [0, 1, 0, 1],
                 texture: "/textures/mat0.png"
-            }
+            },
+
         ]
 
         this.vehicleBody = {
@@ -302,4 +346,4 @@ class Scene {
     }
 }
 
-export { Scene }
+export { Scene_Egor, Scene_Matvey }
