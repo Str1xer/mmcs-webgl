@@ -1,5 +1,5 @@
 import { drawMesh } from "../meshes-render-core/draw-mesh.js";
-import { Particle1 } from "../../content/particles/particle2.js";
+import { Particle1 } from "../../content/particles/particle4.js";
 import { draw } from "../meshes-render-core/draw.js";
 
 class ParticlesRenderCore {
@@ -9,6 +9,10 @@ class ParticlesRenderCore {
 
     preload() {
         this.particle1.preload();
+    }
+
+    start() {
+        this.particle1.start();
     }
 
     tick(deltaTime) {

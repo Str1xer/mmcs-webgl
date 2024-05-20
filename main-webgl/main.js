@@ -21,6 +21,8 @@ async function main() {
 
   await renderCore.start();
 
+  await scene.start();
+
   let then = 0;
   function render(now) {
     now *= 0.001;

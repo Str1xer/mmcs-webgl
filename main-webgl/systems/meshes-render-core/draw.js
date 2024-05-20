@@ -4,11 +4,13 @@ function draw(model, material) {
     let currentProgram, currentProgramInfo;
 
     if (material.domain === "particle") {
+        gl.depthMask(false);
         currentProgram = shaderPrograms.deafultParticleProgram;
         currentProgramInfo = programInfoCollection.defaultParticleInfo;
     }
     else {
-        currentProgram = shaderPrograms.mainPassProgram
+        gl.depthMask(true);
+        currentProgram = shaderPrograms.mainPassProgram;
         currentProgramInfo = programInfoCollection.mainPassInfo;
     }
 
@@ -16,7 +18,11 @@ function draw(model, material) {
 
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 
-    const buffers = initBuffers(model.mesh, material.color || [0, 0, 0, 1]);
+
+    const colors = [];
+    Array(model.mesh.vertexPositions.length).fill().map(e => colors.push(...material.color))
+
+    const buffers = initBuffers(model.mesh, colors);
 
     // Transform object
     const modelViewMatrix = mat4.create();
@@ -36,40 +42,39 @@ function draw(model, material) {
     mat4.translate(modelViewMatrix, modelViewMatrix, [0, 0, 0]);
 
     if (currentProgramInfo.attribLocations.vertexPosition != null) {
-        console.log("vertex pos")
         gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position);
         gl.vertexAttribPointer(currentProgramInfo.attribLocations.vertexPosition, 3, gl.FLOAT, false, 0, 0);
     }
 
     if (currentProgramInfo.attribLocations.vertexNormal != null) {
-        console.log("vertex norm")
         gl.bindBuffer(gl.ARRAY_BUFFER, buffers.normal);
         gl.vertexAttribPointer(currentProgramInfo.attribLocations.vertexNormal, 3, gl.FLOAT, false, 0, 0);
     }
 
+    if (currentProgramInfo.attribLocations.vertexColor != null) {
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffers.color);
+        gl.vertexAttribPointer(currentProgramInfo.attribLocations.vertexColor, 4, gl.FLOAT, false, 0, 0);
+    }
+
     if (currentProgramInfo.attribLocations.textureCoord != null) {
-        console.log("text coords")
         gl.bindBuffer(gl.ARRAY_BUFFER, buffers.textureCoord);
         gl.vertexAttribPointer(currentProgramInfo.attribLocations.textureCoord, 2, gl.FLOAT, false, 0, 0,);
     }
 
     if (buffers.indices) {
-        console.log("inices")
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.indices);
     }
 
     gl.uniformMatrix4fv(currentProgramInfo.uniformLocations.projectionMatrix, false, projectionMatrix);
     gl.uniformMatrix4fv(currentProgramInfo.uniformLocations.modelViewMatrix, false, modelViewMatrix);
 
-    if (currentProgramInfo.uniformLocations.sampler) {
-        console.log("texture sampler")
+    if (currentProgramInfo.uniformLocations.sampler != null) {
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, material.textureObjects[0]);
         gl.uniform1i(currentProgramInfo.uniformLocations.sampler, 0);
     }
 
-    if (currentProgramInfo.uniformLocations.normalSampler) {
-        console.log("normal sampler")
+    if (currentProgramInfo.uniformLocations.normalSampler != null) {
         gl.activeTexture(gl.TEXTURE0 + 1);
         gl.bindTexture(gl.TEXTURE_2D, material.textureObjects[1]);
         gl.uniform1i(currentProgramInfo.uniformLocations.normalSampler, 1);

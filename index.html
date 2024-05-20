@@ -9,7 +9,7 @@
         crossorigin="anonymous" defer></script>
     <script src="https://flyover.github.io/imgui-js/dist/imgui.umd.js"></script>
     <script src="https://flyover.github.io/imgui-js/dist/imgui_impl.umd.js"></script>
-    
+
     <!-- WebGl Global Variables -->
     <script>
         var canvas;
@@ -43,6 +43,17 @@
         var lightSources = [];
         var loadedAssets = {};
         var projectionMatrix;
+
+        var xMousePos;
+        var yMousePos;
+    </script>
+    <script>
+        function mouseCoordinates(event) {
+            xMousePos = event.clientX - document.body.clientWidth / 2;
+            yMousePos = event.clientY - document.body.clientHeight / 2;
+        }
+
+        document.onmousemove = mouseCoordinates;
     </script>
     <!-- <script src="/mmcs-webgl/main-webgl/main.js" type="module"></script> -->
     <script src="/main-webgl/main.js" type="module"></script>

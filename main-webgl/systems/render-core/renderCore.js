@@ -5,8 +5,6 @@ import { loadTexture } from "../../utils/loadTextures.js";
 
 class RenderCore {
     constructor() {
-        console.log("Render core construct")
-
         programInfoCollection.mainPassInfo = {
             attribLocations: {
                 vertexPosition: gl.getAttribLocation(shaderPrograms.mainPassProgram, "aVertexPosition"),
@@ -34,6 +32,7 @@ class RenderCore {
         programInfoCollection.defaultParticleInfo = {
             attribLocations: {
                 vertexPosition: gl.getAttribLocation(shaderPrograms.deafultParticleProgram, "aVertexPosition"),
+                vertexColor: gl.getAttribLocation(shaderPrograms.deafultParticleProgram, "aVertexColor"),
                 textureCoord: gl.getAttribLocation(shaderPrograms.deafultParticleProgram, "aTextureCoord"),
             },
             uniformLocations: {
@@ -60,6 +59,8 @@ class RenderCore {
 
         loadedAssets["/textures/Smoke.png"] = await loadTexture("/textures/Smoke.png");
         loadedAssets["/textures/spark.png"] = await loadTexture("/textures/spark.png");
+        loadedAssets["/textures/firework.png"] = await loadTexture("/textures/firework.png");
+        loadedAssets["/textures/FallingPart.png"] = await loadTexture("/textures/FallingPart.png");
 
         this.particlesRenderCore.preload();
         // console.log("Render core preload");
@@ -67,12 +68,14 @@ class RenderCore {
 
     async start() {
         // console.log("Render core start");
+        this.particlesRenderCore.start();
     }
 
     tick(deltaTime) {
         // console.log("Render core tick");
 
-        gl.clearColor(111 / 255, 217 / 255, 208 / 255, 1.0);
+        // gl.clearColor(111 / 255, 217 / 255, 208 / 255, 1.0);
+        gl.clearColor(0 / 255, 0 / 255, 0 / 255, 1.0);
 
         gl.clearDepth(1.0);
         gl.enable(gl.DEPTH_TEST);
