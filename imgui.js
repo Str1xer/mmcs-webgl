@@ -24,18 +24,20 @@ export async function initImGUI(canvas) {
         //     lightingMode *= -1;
         // }
 
-        ImGui.SliderFloat("Cube rotation X", (_ = rotationX) => rotationX = _, 0.0, Math.PI * 2);
-        ImGui.SliderFloat("Cube rotation Y", (_ = rotationY) => rotationY = _, 0.0, Math.PI * 2);
-        ImGui.SliderFloat("Cube rotation Z", (_ = rotationZ) => rotationZ = _, 0.0, Math.PI * 2);
+        // ImGui.SliderFloat("Cube rotation X", (_ = rotationX) => rotationX = _, 0.0, Math.PI * 2);
+        // ImGui.SliderFloat("Cube rotation Y", (_ = rotationY) => rotationY = _, 0.0, Math.PI * 2);
+        // ImGui.SliderFloat("Cube rotation Z", (_ = rotationZ) => rotationZ = _, 0.0, Math.PI * 2);
 
         ImGui.ColorEdit3("Ambient Light Color", ambientLightColor);
         ImGui.ColorEdit3("Diffusion Light Color", diffusionLightColor);
         ImGui.ColorEdit3("Specular Light Color", specularLightColor);
 
-        ImGui.InputFloat("Linear Attenuation", (_ = linearAttenuation) => linearAttenuation = _, 0.0, 10.0);
-        ImGui.InputFloat("Quadratic Attenuation", (_ = quadraticAttenuation) => quadraticAttenuation = _, 0.0, 10.0);
-        ImGui.InputFloat("Light Intensivity", (_ = intensivity) => intensivity = _, 0.0, 10.0);
+        // ImGui.InputFloat("Linear Attenuation", (_ = linearAttenuation) => linearAttenuation = _, 0.0, 10.0);
+        // ImGui.InputFloat("Quadratic Attenuation", (_ = quadraticAttenuation) => quadraticAttenuation = _, 0.0, 10.0);
 
+        for (let i = 0; i < lightSources.length; i++) {
+            ImGui.InputFloat("LightSource " + i, (_ = lightSources[i].intensivity) => lightSources[i].intensivity = _, 0.0, 10.0);
+        }
         // ImGui.InputFloat("Color Weight", (_ = colorWeight) => colorWeight = _, 0.0, 10.0);
         // ImGui.InputFloat("Digit Weight", (_ = digitWeight) => digitWeight = _, 0.0, 10.0);
         // ImGui.InputFloat("Material Weight", (_ = materialWeight) => materialWeight = _, 0.0, 10.0);

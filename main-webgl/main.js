@@ -7,14 +7,16 @@ let deltaTime = 0;
 
 //switch scene
 document.addEventListener('keydown', (e) => {
-  if (e.key == 2) {
+  if (e.ctrlKey && e.key == 2) {
+    e.preventDefault();
     alert('switched to Matvey_Scene');
     preloads('Matvey');
-  }; 
-  if (e.key == 1) {
+  };
+  if (e.ctrlKey && e.key == 1) {
+    e.preventDefault();
     alert('switched to Egor_Scene');
     preloads('Egor');
-  }; 
+  };
 });
 
 async function main(canvas, vsSource, fsSource, pscene) {
