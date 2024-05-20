@@ -84,11 +84,11 @@ class Scene_Egor {
         lightSources = [
             {
                 location: [-1.5, 0, -12.5],
-                intensivity: 1.
+                intensivity: 0.2
             },
             {
                 location: [2, 0, -12.5],
-                intensivity: 1.
+                intensivity: 1
             },
             {
                 location: [-3.2, -1.9, -11.5],
