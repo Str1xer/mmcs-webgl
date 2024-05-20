@@ -43,11 +43,12 @@ class RenderCore {
 
                 linearAttenuation: this.gl.getUniformLocation(this.shaderProgram, "uLinearAttenuation"),
                 quadraticAttenuation: this.gl.getUniformLocation(this.shaderProgram, "uQuadraticAttenuation"),
-                intensivity: this.gl.getUniformLocation(this.shaderProgram, "uIntensivity"),
 
                 colorWeight: this.gl.getUniformLocation(this.shaderProgram, "uColorWeight"),
                 digitWeight: this.gl.getUniformLocation(this.shaderProgram, "uDigitWeight"),
                 materialWeight: this.gl.getUniformLocation(this.shaderProgram, "uMaterialWeight"),
+
+                lightSourceCount: this.gl.getUniformLocation(this.shaderProgram, "uLightSourceCount"),
             },
         };
 

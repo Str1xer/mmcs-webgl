@@ -20,13 +20,16 @@ class LightingSystem {
         this.gl.uniform1f(
             this.programInfo.uniformLocations.quadraticAttenuation, quadraticAttenuation
         );
-        this.gl.uniform1f(
-            this.programInfo.uniformLocations.intensivity, intensivity
+
+        this.gl.uniform1i (
+            this.programInfo.uniformLocations.lightSourceCount, lightSources.length
         );
 
         lightSources.forEach((source, idx) => {
             const uniformLocation = this.gl.getUniformLocation(this.programInfo.program, "uLightPosition[" + idx + "]");
             this.gl.uniform3fv(uniformLocation, source.location);
+            const uniformIntensivity = this.gl.getUniformLocation(this.programInfo.program, "uLightIntensivity[" + idx + "]");
+            this.gl.uniform1f(uniformIntensivity, source.intensivity);
         })
     }
 }
