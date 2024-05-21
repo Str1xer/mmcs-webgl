@@ -10,7 +10,8 @@ class Scene_Matvey {
         loadedAssets["chest_lid"] = await parseOBJ(await loadModel("/assets/scene_Matvey/chest_lid.obj"));
         loadedAssets["plane"] = await parseOBJ(await loadModel("/assets/scene_Egor/plane.obj"));
         loadedAssets["tree-tall"] = await parseOBJ(await loadModel("/assets/scene_Egor/tree.obj"));
-        loadedAssets["tractor"] = await parseOBJ(await loadModel("/assets/scene_Matvey/tractor.obj"));
+        loadedAssets["ram"] = await parseOBJ(await loadModel("/assets/scene_Matvey/ram.obj"));
+        loadedAssets["ram-s"] = await parseOBJ(await loadModel("/assets/scene_Matvey/ram-s.obj"));
 
     }
 
@@ -130,41 +131,62 @@ class Scene_Matvey {
             texture: "/textures/survival-a"
         }
 
-        this.tractor = {
-            mesh: loadedAssets["tractor"],
+        this.ram = {
+            mesh: loadedAssets["ram"],
             transform: {
                 location: [-5, -2.265, -11],
-                rotation: [0, Math.PI / 4, 0],
-                scale: [0.7, 0.7, 0.7],
+                rotation: [0, -Math.PI / 4, 0],
+                scale: [1, 1, 1],
             },
             origin: [0, 0, 0],
             color: [0, 1, 0, 1],
-            texture: "/textures/survival-b"
+            texture: "/textures/castle-a"
+        }
+
+        this.rams = {
+            mesh: loadedAssets["ram-s"],
+            transform: {
+                location: [-5, -1.725, -11],
+                rotation: [0, -Math.PI / 4, 0],
+                scale: [1,1,1],
+            },
+            origin: [0, 0, 0],
+            color: [0, 1, 0, 1],
+            texture: "/textures/castle-a"
         }
 
         meshes.push(this.chest_lid);
-        meshes.push(this.tractor);
+        meshes.push(this.ram);
+        meshes.push(this.rams);
 
         document.addEventListener("wheel", e => {
-            tractor(e, this.tractor);
+            ram(e, this.ram);
+            rams(e,this.rams);
         });
 
     }
 
     tick() {
         //this.chest_lid.transform.rotation[1] += 0.02; 
+        this.rams.transform.rotation[0] += 0.02; 
     }
 
 }
 
 
-function tractor(e, object) {
+function ram(e, object) {
     var delta = e.deltaY || e.detail || e.wheelDelta;
     object.transform.location[0] -= delta / 2000;
     object.transform.location[2] -= delta / 2000;
 
     lightSources[1].location[0] -= delta / 2000;
     lightSources[1].location[2] -= delta / 2000;
+}
+
+function rams(e, object) {
+    var delta = e.deltaY || e.detail || e.wheelDelta;
+    object.transform.location[0] -= delta / 2000;
+    object.transform.location[2] -= delta / 2000;
 }
 
 
