@@ -114,12 +114,17 @@ function parseOBJ(objText) {
                 indexArray.push(facemap[array[i]]);
             }
         }
+
     }
+
+    let finalTexture = convertTextureCoords(textureArray)
+
+    console.log(normalArray)
 
     return {
         vertexPositions: vertexArray,
         vertexNormals: normalArray,
-        textureCoord: textureArray,
+        textureCoord: finalTexture,
         color: [],
         indices: indexArray,
         tangents: tangentArray,
@@ -129,4 +134,22 @@ function parseOBJ(objText) {
 }
 
 
+function convertTextureCoords(uvCoords) {
+    const temp = []
+
+    for (let i = 0; i < uvCoords.length; i += 2) {
+        let u = uvCoords[i] % 1;
+        let v = uvCoords[i + 1] % 1;
+
+        if (u < 0) u += 1;
+        if (v < 0) v += 1;
+
+        // Flip V coordinate for WebGL
+        v = 1 - v;
+
+        temp.push(u, v)
+    }
+
+    return temp;
+}
 export { loadModel, parseOBJ }

@@ -1,6 +1,7 @@
 import { initImGUI } from "../imgui.js";
 import { loadShaders } from "./utils/loadShaders.js";
-import { Scene_Egor, Scene_Matvey } from "./scene.js";
+import { Scene_Matvey } from "./scene.js";
+import { Scene_Egor } from "./scene_egor.js";
 import { RenderCore } from "./systems/render-core/renderCore.js";
 
 let deltaTime = 0;

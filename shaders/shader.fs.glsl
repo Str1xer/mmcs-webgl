@@ -10,15 +10,23 @@ uniform highp vec3 uSpecularLightColor;
 uniform highp float uLinearAttenuation;
 uniform highp float uQuadraticAttenuation;
 uniform sampler2D uSampler;
-uniform sampler2D uNormalSampler;
 
 varying vec3 vNormal;
-
 varying vec3 vFragPos;
-
 varying highp vec2 vTextureCoord;
 
 const float shininess = 16.0;
+
+vec3 adjustExposure(vec3 color, float value) {
+    return (1.0 + value) * color;
+}
+
+vec3 adjustSaturation(vec3 color, float value) {
+    const vec3 luminosityFactor = vec3(0.2126, 0.7152, 0.0722);
+    vec3 grayscale = vec3(dot(color, luminosityFactor));
+
+    return mix(grayscale, color, 1.0 + value);
+}
 
 vec3 light(vec3 lightDir, vec3 normal, float intensivity) {
     float distance = length(lightDir);
@@ -39,9 +47,6 @@ vec3 light(vec3 lightDir, vec3 normal, float intensivity) {
 void main(void) {
     vec4 textureColor = texture2D(uSampler, vTextureCoord);
 
-    vec3 normalMapValue = texture2D(uNormalSampler, vTextureCoord).rgb;
-    normalMapValue = normalize(normalMapValue * 2.0 - 1.0);
-
     vec3 vLightWeighting = uAmbientLightColor;
 
     vec3 viewDir = normalize(-vFragPos);
@@ -54,5 +59,5 @@ void main(void) {
         vLightWeighting += light(lightDir, normalize(vNormal), uLightIntensivity[i]);
     }
 
-    gl_FragColor = vec4(textureColor.rgb * vLightWeighting, 1.0);
+    gl_FragColor = vec4(adjustSaturation(adjustExposure(textureColor.rgb * vLightWeighting, 0.2), 0.7), 1.0);
 }
