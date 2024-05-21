@@ -71,6 +71,8 @@ class RenderCore {
         loadedAssets["/textures/mat15.png"] = await loadTexture(this.gl, "/textures/mat15.png");
         loadedAssets["/textures/mat16.png"] = await loadTexture(this.gl, "/textures/mat16.png");
 
+        loadedAssets["/textures/grass.png"] = await loadTexture(this.gl, "/textures/grass.png");
+
         loadedAssets["/textures/survival-a"] = await loadTexture(this.gl, "/textures/survival/variation-a.png");
 
         loadedAssets["/textures/castle-a"] = await loadTexture(this.gl, "/textures/castle/variation-a.png");
@@ -91,7 +93,8 @@ class RenderCore {
     tick() {
         console.log("Render core tick");
 
-        this.gl.clearColor(0, 0, 0, 1.0);
+        // this.gl.clearColor(100 / 255, 200 / 255, 220 / 255, 1.0);
+        this.gl.clearColor(0 / 255, 0 / 255, 0 / 255, 1.0);
         this.gl.clearDepth(1.0);
         this.gl.enable(this.gl.DEPTH_TEST);
         this.gl.depthFunc(this.gl.LEQUAL);

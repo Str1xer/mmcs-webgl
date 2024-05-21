@@ -1,0 +1,492 @@
+# Blender 3.6.9 MTL File: 'None'
+# www.blender.org
+
+newmtl roofRed.020
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl roofRed.024
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl roofRed.025
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl roofRed.026
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl roofRedLight.017
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl roofRedLight.021
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl roofRedLight.022
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl roofRedLight.023
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl stone.103
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl stone.107
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl stone.108
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl stone.109
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl stone.110
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl stone.111
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl stoneDark.041
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.144
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.148
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.149
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.150
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.161
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.162
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.163
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.164
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.165
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.166
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.167
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.168
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.169
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.170
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.171
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.172
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.173
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl wood.174
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.066
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.070
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.081
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.082
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.083
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.084
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.085
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.086
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.087
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.088
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.089
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.090
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.091
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.092
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.093
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
+
+newmtl woodDark.094
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd C:/Users/lavrukhinegor/Documents/GitHub/mmcs-webgl/textures/survival/variation-a.png
