@@ -3,21 +3,29 @@ import { loadShaders } from "./utils/loadShaders.js";
 import { Scene_Matvey } from "./scene.js";
 import { Scene_Egor } from "./scene_egor.js";
 import { RenderCore } from "./systems/render-core/renderCore.js";
+import { Scene_Alex } from "./scene_alex.js";
 
 let deltaTime = 0;
 
 //switch scene
-document.addEventListener('keydown', (e) => {
+document.addEventListener("keydown", (e) => {
   if (e.ctrlKey && e.key == 2) {
     e.preventDefault();
-    alert('switched to Matvey_Scene');
-    preloads('Matvey');
-  };
+    alert("switched to Matvey_Scene");
+    preloads("Matvey");
+  }
+
   if (e.ctrlKey && e.key == 1) {
     e.preventDefault();
-    alert('switched to Egor_Scene');
-    preloads('Egor');
-  };
+    alert("switched to Egor_Scene");
+    preloads("Egor");
+  }
+
+  if (e.ctrlKey && e.key == 3) {
+    e.preventDefault();
+    alert("switched to Alex_Scene");
+    preloads("Alex");
+  }
 });
 
 async function main(canvas, vsSource, fsSource, pscene) {
@@ -32,6 +40,10 @@ async function main(canvas, vsSource, fsSource, pscene) {
 
   if (pscene == "Egor") {
     scene = new Scene_Egor();
+  }
+
+  if (pscene == "Alex") {
+    scene = new Scene_Alex();
   }
 
   await scene.preload();
