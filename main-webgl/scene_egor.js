@@ -311,9 +311,9 @@ class Scene_Egor {
         meshes.push(this.millbase_wings)
         meshes.push(this.siege_tower)
 
-        document.addEventListener("wheel", e => {
+        /*document.addEventListener("wheel", e => {
             onWheel(e, this.siege_tower)
-        });
+        });*/
     }
 
     tick() {
