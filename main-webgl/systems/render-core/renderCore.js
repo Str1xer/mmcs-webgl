@@ -82,6 +82,7 @@ class RenderCore {
         loadedAssets["/textures/castle-e"] = await loadTexture(this.gl, "/textures/castle/variation-e.png");
         loadedAssets["/textures/castle-f"] = await loadTexture(this.gl, "/textures/castle/variation-f.png");
         loadedAssets["/textures/castle-g"] = await loadTexture(this.gl, "/textures/castle/variation-g.png");
+        loadedAssets["/textures/graveyard"] = await loadTexture(this.gl, "/textures/colormap.png");
 
         console.log("Render core preload");
     }
